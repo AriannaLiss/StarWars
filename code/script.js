@@ -22,6 +22,7 @@ function get(url, callback){
         if (ajax.readyState === 4){
             if (ajax.status >= 200 && ajax.status < 300) {
                 callback(JSON.parse(ajax.response));
+                document.querySelector('.loader').classList.add('hide');
             } else {
                 throw new error(`error: ${ajax.status}/${ajax.statusText}`);
             }
@@ -43,6 +44,7 @@ function showHeros(data){
         div.appendChild(card);
         document.getElementsByTagName('body')[0].appendChild(div);
      }) 
+
 }
 
 const createInfoCard = (hero) => {
@@ -78,7 +80,6 @@ const saveHero = (e) =>{
     Array.from(e.target.previousSibling.children).forEach((p) => info+=p.innerText+'\n')
     console.log(info);
 }
-
 
 const showProp = (prop,hero) => {
     const info = document.createElement('p');
